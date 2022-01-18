@@ -56,6 +56,15 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             NavigatingDrawerListItem(
+              title: Text('Report'),
+              onTap: ()
+              {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => MyHomePage()));
+              },
+            ),
+            NavigatingDrawerListItem(
               title: Text('SLA'),
               onTap: ()
              {
