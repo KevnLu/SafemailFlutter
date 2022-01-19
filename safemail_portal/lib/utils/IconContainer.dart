@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class IconContainer extends StatelessWidget {
-  double size = 30.0;
+  double size = 24.0;
   Color color = Colors.red;
   IconData icon;
   String titleText = "";
@@ -13,8 +13,8 @@ class IconContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      width: 100,
+      height: 90,
+      width: 110,
       color: color,
       child: Card(
         child: ListTile(
@@ -22,7 +22,8 @@ class IconContainer extends StatelessWidget {
             children: <Widget>[
               Text(
                 titleText,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
               ),
               Text(
                 subTitleText,
@@ -33,10 +34,11 @@ class IconContainer extends StatelessWidget {
                     icon,
                     size: size,
                     color: Colors.green,
-                    semanticLabel: "Active",
-                    textDirection: TextDirection.rtl,
                   ),
-                  Text("Actvie")
+                  const Text(
+                    "Actvie",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                  )
                 ],
                 mainAxisAlignment: MainAxisAlignment.center,
               ),

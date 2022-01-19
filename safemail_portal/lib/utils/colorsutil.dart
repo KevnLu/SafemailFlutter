@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class ColorsUtil {
   static Color hexColor(String colorString, {double alpha = 1.0}) {
