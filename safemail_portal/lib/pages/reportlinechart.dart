@@ -82,7 +82,7 @@ class ReportLineChartState extends State<ReportLineChart> {
         Container(
           color: Colors.white,
           width: double.infinity,
-          height: 600.0,
+          height: 400.0,
           child: const _LineChart(),
         ),
       ],

@@ -1,12 +1,9 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:navigating_drawer/navigating_drawer.dart';
-import 'package:safemail_portal/sla.dart';
-//import 'Report.dart';
-import 'sla.dart';
-import 'FilterReport.dart';
-import 'linereport.dart';
+import 'package:safemail_portal/pages/reportcardchart.dart';
+import 'package:safemail_portal/pages/reportlinechart.dart';
+import 'package:safemail_portal/utils/colorsutil.dart';
+import 'routing.dart';
 
 void main() {
   runApp(const SafemailApp());
@@ -37,94 +34,41 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavigatingDrawer(
-        body: NavigatingDrawerList(
-          children: [
-            NavigatingDrawerListItem(
-              title: const Text('Home'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => const MyHomePage()));
-              },
-            ),
-            NavigatingDrawerListItem(
-              title: const Text('Filter Report'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => const FilterReport()));
-              },
-            ),
-            NavigatingDrawerListItem(
-              title: const Text('Report'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => const LineReport()));
-              },
-            ),
-            NavigatingDrawerListItem(
-              title: const Text('SLA'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => const sla()));
-              },
-            ),
-            NavigatingDrawerListItem(
-              title: const Text('Admin'),
-              pushPage: NavigatingDrawerPage(
-                body: NavigatingDrawerList(
-                  children: const [
-                    NavigatingDrawerListItem(
-                      title: Text('Maintain Users'),
-                    ),
-                    NavigatingDrawerListItem(
-                      title: Text('Customer Report'),
-                    ),
-                    NavigatingDrawerListItem(
-                      title: Text('Hourly Report'),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      drawer: const Routing(),
       appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
+          backgroundColor: ColorsUtil.hexColor('#582D82'),
+          title: Container(
+            padding:
+                const EdgeInsets.only(left: 0, right: 10, top: 5, bottom: 0),
+            alignment: Alignment.topRight,
+            height: 60,
+            child: Image.asset('assets/logo.png'),
+          )
+          //   Text(widget.title),
+          ),
+      body: Container(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            const Padding(
+              padding: EdgeInsets.only(
+                left: 2,
+                right: 2,
+              ),
+              child: ReportCardChart(),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Container(height: 1, color: Colors.black),
+            const Padding(
+              padding: EdgeInsets.only(
+                left: 2,
+                right: 2,
+              ),
+              child: ReportLineChart(),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
