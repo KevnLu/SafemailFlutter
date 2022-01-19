@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:navigating_drawer/navigating_drawer.dart';
 import 'package:safemail_portal/sla.dart';
-import 'Report.dart';
+//import 'Report.dart';
 import 'sla.dart';
+import 'FilterReport.dart';
+import 'linereport.dart';
 
 void main() {
   runApp(const SafemailApp());
@@ -58,11 +60,19 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             NavigatingDrawerListItem(
+              title: const Text('Filter Report'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => const FilterReport()));
+              },
+            ),
+            NavigatingDrawerListItem(
               title: const Text('Report'),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => const Report()));
+                    builder: (BuildContext context) => const LineReport()));
               },
             ),
             NavigatingDrawerListItem(

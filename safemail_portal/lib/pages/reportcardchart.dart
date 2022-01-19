@@ -23,16 +23,16 @@ class ReportCardChartState extends State<ReportCardChart> {
     return Row(crossAxisAlignment: CrossAxisAlignment.center, children: <
         Widget>[
       Expanded(
-        child: IconContainer("Emails", "124", Icons.circle, Colors.black, 30),
+        child: IconContainer("Emails", "124", Icons.circle, Colors.white, 30),
       ),
       Expanded(
-        child: IconContainer("Drive", "12", Icons.circle, Colors.black, 30),
+        child: IconContainer("Drive", "12", Icons.circle, Colors.white, 30),
       ),
       Expanded(
-        child: IconContainer("Calendar", "140", Icons.circle, Colors.black, 30),
+        child: IconContainer("Calendar", "140", Icons.circle, Colors.white, 30),
       ),
       Expanded(
-        child: IconContainer("Referrals", "0", Icons.circle, Colors.black, 30),
+        child: IconContainer("Referrals", "0", Icons.circle, Colors.white, 30),
       ),
     ]);
   }
