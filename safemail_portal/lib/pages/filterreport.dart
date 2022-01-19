@@ -11,7 +11,7 @@ class FilterReport extends StatefulWidget {
 }
 
 class _FilterReportState extends State<FilterReport> {
-  List<String> _selectedItems = [];
+  List<String> _selectedItems = ['Email', 'Drive', 'Calendar'];
 
   void _showMultiSelect() async {
     // a list of selectable items
@@ -62,8 +62,7 @@ class _FilterReportState extends State<FilterReport> {
                   .toList(),
             ),
             SizedBox(height: 10),
-            FilterReportChart(),
-            Text("Hello")
+            FilterReportChart(selectedSources: _selectedItems)
           ],
         ),
       ),
