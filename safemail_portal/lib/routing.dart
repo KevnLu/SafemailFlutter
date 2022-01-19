@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navigating_drawer/navigating_drawer.dart';
 import 'package:safemail_portal/sla.dart';
 import 'pages/FilterReport.dart';
-
+import 'package:safemail_portal/reporttable.dart';
 import 'pages/filterreportchart.dart';
 
 class Routing extends StatelessWidget {
@@ -35,6 +35,15 @@ class Routing extends StatelessWidget {
                 builder: (BuildContext context) => const sla()));
           },
         ),
+        NavigatingDrawerListItem(
+              title: Text('ReportTable'),
+              onTap: ()
+             {
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => reporttable()));
+              },
+            ),
         NavigatingDrawerListItem(
           title: const Text('Admin'),
           pushPage: NavigatingDrawerPage(
