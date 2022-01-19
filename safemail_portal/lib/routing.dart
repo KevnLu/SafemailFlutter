@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:navigating_drawer/navigating_drawer.dart';
 import 'package:safemail_portal/sla.dart';
-import 'FilterReport.dart';
+import 'pages/FilterReport.dart';
+
+import 'pages/filterreportchart.dart';
 
 class Routing extends StatelessWidget {
   const Routing({Key? key}) : super(key: key);
@@ -21,7 +23,8 @@ class Routing extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pop();
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => const FilterReport()));
+              //builder: (BuildContext context) => const FilterReportChart()));
+              builder: (BuildContext context) => const FilterReport()));
           },
         ),
         NavigatingDrawerListItem(
