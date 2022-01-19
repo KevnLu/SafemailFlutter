@@ -76,11 +76,23 @@ class _FilterReportState extends State<FilterReport> {
 
     List<charts.Series<FilterReportData, String>> reportData = [
       charts.Series(
-        id: "Subscribers",
+        id: "Reviewed",
         data: lstData,
         domainFn: (FilterReportData data, _) => data.Date,
-        measureFn: (FilterReportData data, _) => data.Reviewed,
-      )
+        measureFn: (FilterReportData data, _) => data.Reviewed
+      ),
+      charts.Series(
+        id: "Filtered",
+        data: lstData,
+        domainFn: (FilterReportData data, _) => data.Date,
+        measureFn: (FilterReportData data, _) => data.Filtered
+      ),
+      charts.Series(
+        id: "Flagged",
+        data: lstData,
+        domainFn: (FilterReportData data, _) => data.Date,
+        measureFn: (FilterReportData data, _) => data.Flags
+      ),
     ];
 
     return Scaffold(
