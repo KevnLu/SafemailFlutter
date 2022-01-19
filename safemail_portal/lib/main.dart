@@ -5,25 +5,26 @@ import 'package:navigating_drawer/navigating_drawer.dart';
 import 'SLA.dart';
 
 void main() {
-  runApp(SafemailApp());
+  runApp(const SafemailApp());
 }
 
 class SafemailApp extends StatelessWidget {
+  const SafemailApp({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Safemail Demo',
+      title: 'Safemail Portal',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title:'Safemail Demo Home Page'),
+      home: const MyHomePage(title: 'Safemail Portal'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -45,39 +46,36 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       drawer: NavigatingDrawer(
         body: NavigatingDrawerList(
-          children: [            
+          children: [
             NavigatingDrawerListItem(
-              title: Text('Home'),
-              onTap: ()
-              {
+              title: const Text('Home'),
+              onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => MyHomePage()));
+                    builder: (BuildContext context) => const MyHomePage()));
               },
             ),
             NavigatingDrawerListItem(
-              title: Text('Report'),
-              onTap: ()
-              {
+              title: const Text('Report'),
+              onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => MyHomePage()));
+                    builder: (BuildContext context) => const MyHomePage()));
               },
             ),
             NavigatingDrawerListItem(
-              title: Text('SLA'),
-              onTap: ()
-             {
-              Navigator.of(context).pop();
-              Navigator.of(context).push(MaterialPageRoute(
+              title: const Text('SLA'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
                     builder: (BuildContext context) => sla()));
               },
-            ),        
+            ),
             NavigatingDrawerListItem(
-            title: Text('Admin'),
+              title: const Text('Admin'),
               pushPage: NavigatingDrawerPage(
                 body: NavigatingDrawerList(
-                  children: [
+                  children: const [
                     NavigatingDrawerListItem(
                       title: Text('Maintain Users'),
                     ),
@@ -101,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'You have pushed the button this many times:',
             ),
             Text(
@@ -114,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
