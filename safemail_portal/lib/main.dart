@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:navigating_drawer/navigating_drawer.dart';
-import 'SLA.dart';
+import 'package:safemail_portal/sla.dart';
+import 'Report.dart';
+import 'sla.dart';
 
 void main() {
   runApp(const SafemailApp());
@@ -60,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => const MyHomePage()));
+                    builder: (BuildContext context) => const Report()));
               },
             ),
             NavigatingDrawerListItem(
@@ -68,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => sla()));
+                    builder: (BuildContext context) => const sla()));
               },
             ),
             NavigatingDrawerListItem(
