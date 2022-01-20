@@ -10,6 +10,7 @@ class sla extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text("SLA"),
+          backgroundColor: Color.fromRGBO(88, 45, 130, 1),
         ),
         body: RichText(
           text: TextSpan(

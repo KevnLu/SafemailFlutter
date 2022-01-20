@@ -44,6 +44,7 @@ class _FilterReportState extends State<FilterReport> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Filter Report'),
+        backgroundColor: Color.fromRGBO(88, 45, 130, 1),
       ),
       body: SingleChildScrollView(
         //padding: const EdgeInsets.all(20),
