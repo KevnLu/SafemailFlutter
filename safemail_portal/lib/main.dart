@@ -1,11 +1,26 @@
 // @dart=2.9
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:safemail_portal/pages/reportcardchart.dart';
 import 'package:safemail_portal/pages/reportlinechart.dart';
 import 'package:safemail_portal/utils/colorsutil.dart';
 import 'routing.dart';
 
-void main() {
+Future<void> _messageHandler(RemoteMessage message) async {
+  print('background message ${message.notification.body}');
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  var messaging = FirebaseMessaging.instance;
+  messaging.getToken().then((value) {
+    print(value);
+  });
+
+  FirebaseMessaging.onBackgroundMessage(_messageHandler);
+  print("testmsg");
   runApp(const SafemailApp());
 }
 
@@ -34,6 +49,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  FirebaseMessaging messaging;
+  @override
+  void initState() {
+    super.initState();
+    messaging = FirebaseMessaging.instance;
+    messaging.getToken().then((value) {
+      print(value);
+    });
+    FirebaseMessaging.onMessage.listen((RemoteMessage event) {
+      print("message recieved");
+      print(event.notification.body);
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Notification"),
+              content: Text(event.notification.body),
+              actions: [
+                TextButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      print('Message clicked!');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

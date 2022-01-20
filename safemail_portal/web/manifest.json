@@ -1,6 +1,6 @@
 {
-    "name": "safemail_console",
-    "short_name": "safemail_console",
+    "name": "safemail_portal",
+    "short_name": "safemail_portal",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

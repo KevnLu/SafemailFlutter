@@ -1,4 +1,4 @@
-package com.example.safemail_console
+package com.example.safemail_portal
 
 import io.flutter.embedding.android.FlutterActivity
 

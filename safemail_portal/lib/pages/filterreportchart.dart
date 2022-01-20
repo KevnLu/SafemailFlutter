@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:html';
+//import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -146,54 +146,60 @@ class _FilterReportChartState extends State<FilterReportChart> {
     return Container(
       height: 400,
       padding: EdgeInsets.all(20),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "Filter Report",
-                  style: TextStyle(
-                  color: Colors.blue[800],
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30),
-                ),
-                Expanded(
-                  //child: charts.LineChart(reportData, animate: true),
-                  child: charts.BarChart(reportData, animate: true),
-                ),
-                Row(
-                  children: const <Widget>[
-                    Icon(
-                      Icons.crop_square,
-                      color: Colors.red,
-                      size: 24.0,
-                    ),
-                    Text("Reviewed"),
-                    SizedBox(width: 20,),
-                    Icon(
-                      Icons.crop_square,
-                      color: Colors.green,
-                      size: 24.0,
-                    ),
-                    Text("Filtered"),
-                    SizedBox(width: 20,),
-                    Icon(
-                      Icons.crop_square,
-                      color: Colors.blue,
-                      size: 24.0,
-                    ),
-                    Text("Flagged"),
-                  ],
-                ),        
-                SizedBox(height: 40,),
-                Text(
-                  "Source: School Messenger",
-                ),
-              ],
-            ),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              Text(
+                "Filter Report",
+                style: TextStyle(
+                    color: Colors.blue[800],
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30),
+              ),
+              Expanded(
+                //child: charts.LineChart(reportData, animate: true),
+                child: charts.BarChart(reportData, animate: true),
+              ),
+              Row(
+                children: const <Widget>[
+                  Icon(
+                    Icons.crop_square,
+                    color: Colors.red,
+                    size: 24.0,
+                  ),
+                  Text("Reviewed"),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Icon(
+                    Icons.crop_square,
+                    color: Colors.green,
+                    size: 24.0,
+                  ),
+                  Text("Filtered"),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Icon(
+                    Icons.crop_square,
+                    color: Colors.blue,
+                    size: 24.0,
+                  ),
+                  Text("Flagged"),
+                ],
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Text(
+                "Source: School Messenger",
+              ),
+            ],
           ),
         ),
+      ),
     );
   }
 }

@@ -1,4 +1,4 @@
-# safemail_console
+# safemail_portal
 
 A new Flutter project.
 
