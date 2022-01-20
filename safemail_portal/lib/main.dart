@@ -8,19 +8,18 @@ import 'package:safemail_portal/utils/colorsutil.dart';
 import 'routing.dart';
 
 Future<void> _messageHandler(RemoteMessage message) async {
-  print('background message ${message.notification.body}');
+  print('background message: ${message.notification.body}');
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  var messaging = FirebaseMessaging.instance;
-  messaging.getToken().then((value) {
-    print(value);
+
+  FirebaseMessaging.instance.getToken().then((value) {
+    print('get device_token: ${value}');
   });
 
   FirebaseMessaging.onBackgroundMessage(_messageHandler);
-  print("testmsg");
   runApp(const SafemailApp());
 }
 
@@ -49,14 +48,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  FirebaseMessaging messaging;
+  //FirebaseMessaging messaging;
   @override
   void initState() {
     super.initState();
+    /*
     messaging = FirebaseMessaging.instance;
     messaging.getToken().then((value) {
       print(value);
     });
+    */
     FirebaseMessaging.onMessage.listen((RemoteMessage event) {
       print("message recieved");
       print(event.notification.body);
