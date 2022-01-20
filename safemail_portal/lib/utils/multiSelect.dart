@@ -63,3 +63,10 @@ class _MultiSelectState extends State<MultiSelect> {
     );
   }
 }
+
+class SelectItem {
+  String Name;
+  bool Checked;
+
+  SelectItem({required this.Name, required this.Checked});
+}

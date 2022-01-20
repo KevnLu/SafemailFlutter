@@ -13,7 +13,9 @@ class FilterReport extends StatefulWidget {
 
 class _FilterReportState extends State<FilterReport> {
   List<String> _selectedItems = ['Email', 'Drive', 'Calendar'];
-  //List<string, bool> _checkBoxItems 
+  //List<SelectItem> _selectedItems = [];
+  //_selectedItems.add(SelectItem(Name: 'Email', True));
+  //List<string, bool> _checkBoxItems
 
   void _showMultiSelect() async {
     // a list of selectable items
@@ -39,7 +41,7 @@ class _FilterReportState extends State<FilterReport> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset : false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Filter Report'),
       ),
@@ -67,9 +69,11 @@ class _FilterReportState extends State<FilterReport> {
             ),
             const SizedBox(height: 10),
             FilterReportChart(selectedSources: _selectedItems),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             Center(
-            child: FilterReportTable(selectedSources: _selectedItems),
+              child: FilterReportTable(selectedSources: _selectedItems),
             ),
             const SizedBox(
               height: 10,
@@ -78,9 +82,7 @@ class _FilterReportState extends State<FilterReport> {
               padding: EdgeInsets.all(20),
               child: Text(
                 "Source: School Messenger",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               ),
             ),
           ],
