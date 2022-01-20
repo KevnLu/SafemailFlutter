@@ -43,6 +43,7 @@ class _MultiSelectState extends State<MultiSelect> {
               .map((item) => CheckboxListTile(
                     value: _selectedItems.contains(item),
                     title: Text(item),
+                    selected: _selectedItems.contains(item),
                     controlAffinity: ListTileControlAffinity.leading,
                     onChanged: (isChecked) => _itemChange(item, isChecked!),
                   ))
