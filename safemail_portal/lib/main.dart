@@ -18,11 +18,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (!kIsWeb) {
     await Firebase.initializeApp();
-
-    FirebaseMessaging.instance.getToken().then((value) {
-      print('get device_token: ${value}');
-    });
-
     FirebaseMessaging.onBackgroundMessage(_messageHandler);
   }
   runApp(const SafemailApp());
@@ -53,11 +48,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //FirebaseMessaging messaging;
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     if (!kIsWeb) {
+      FirebaseMessaging.instance.getToken().then((value) {
+        if (value != null) {
+          print('get device_token: ${value}');
+        } else {
+          print('get device_token error.');
+        }
+      });
+
       FirebaseMessaging.onMessage.listen((RemoteMessage event) {
         print("message recieved");
         print(event.notification.title);
@@ -83,10 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
         print('Message clicked!');
       });
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       drawer: const Routing(),
       appBar: AppBar(
