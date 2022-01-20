@@ -1,6 +1,9 @@
 // @dart=2.9
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:safemail_portal/pages/reportcardchart.dart';
 import 'package:safemail_portal/pages/reportlinechart.dart';
@@ -13,13 +16,15 @@ Future<void> _messageHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  if (!kIsWeb) {
+    await Firebase.initializeApp();
 
-  FirebaseMessaging.instance.getToken().then((value) {
-    print('get device_token: ${value}');
-  });
+    FirebaseMessaging.instance.getToken().then((value) {
+      print('get device_token: ${value}');
+    });
 
-  FirebaseMessaging.onBackgroundMessage(_messageHandler);
+    FirebaseMessaging.onBackgroundMessage(_messageHandler);
+  }
   runApp(const SafemailApp());
 }
 
@@ -52,35 +57,32 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    /*
-    messaging = FirebaseMessaging.instance;
-    messaging.getToken().then((value) {
-      print(value);
-    });
-    */
-    FirebaseMessaging.onMessage.listen((RemoteMessage event) {
-      print("message recieved");
-      print(event.notification.body);
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Notification"),
-              content: Text(event.notification.body),
-              actions: [
-                TextButton(
-                  child: Text("Ok"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            );
-          });
-    });
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      print('Message clicked!');
-    });
+    if (!kIsWeb) {
+      FirebaseMessaging.onMessage.listen((RemoteMessage event) {
+        print("message recieved");
+        print(event.notification.title);
+        print(event.notification.body);
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(event.notification.title),
+                content: Text(event.notification.body),
+                actions: [
+                  TextButton(
+                    child: const Text("Ok"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              );
+            });
+      });
+      FirebaseMessaging.onMessageOpenedApp.listen((message) {
+        print('Message clicked!');
+      });
+    }
   }
 
   @override
