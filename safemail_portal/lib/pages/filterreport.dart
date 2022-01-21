@@ -12,9 +12,12 @@ class FilterReport extends StatefulWidget {
 }
 
 class _FilterReportState extends State<FilterReport> {
-  List<String> _selectedItems = ['Email', 'Drive', 'Calendar'];
-  //List<SelectItem> _selectedItems = [];
-  //_selectedItems.add(SelectItem(Name: 'Email', True));
+  //List<String> _selectedItems = ['Email', 'Drive', 'Calendar'];
+  List<SelectItem> _selectedItems = [
+    SelectItem(Name: "Email", Checked: true),
+    SelectItem(Name: "Drive", Checked: true),
+    SelectItem(Name: "Calendar", Checked: true),
+  ];
   //List<string, bool> _checkBoxItems
 
   void _showMultiSelect() async {
@@ -26,20 +29,26 @@ class _FilterReportState extends State<FilterReport> {
     final List<String>? results = await showDialog(
       context: context,
       builder: (BuildContext context) {
-        return MultiSelect(items: _items);
+        return MultiSelect(items: _selectedItems);
       },
     );
 
     // Update UI
     if (results != null) {
       setState(() {
-        _selectedItems = results;
+        for (var item in _selectedItems) {
+          item.Checked = results.contains(item.Name);
+        }
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    List<String> _sources = [];
+    for (var item in _selectedItems) {
+      if (item.Checked) _sources.add(item.Name);
+    }
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -62,19 +71,19 @@ class _FilterReportState extends State<FilterReport> {
             ),
             // display selected items
             Wrap(
-              children: _selectedItems
+              children: _sources
                   .map((e) => Chip(
                         label: Text(e),
                       ))
                   .toList(),
             ),
             const SizedBox(height: 10),
-            FilterReportChart(selectedSources: _selectedItems),
+            FilterReportChart(selectedSources: _sources),
             const SizedBox(
               height: 10,
             ),
             Center(
-              child: FilterReportTable(selectedSources: _selectedItems),
+              child: FilterReportTable(selectedSources: _sources),
             ),
             const SizedBox(
               height: 10,

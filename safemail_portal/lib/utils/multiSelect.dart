@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MultiSelect extends StatefulWidget {
-  final List<String> items;
+  final List<SelectItem> items;
   const MultiSelect({Key? key, required this.items}) : super(key: key);
 
   @override
@@ -10,16 +10,13 @@ class MultiSelect extends StatefulWidget {
 
 class _MultiSelectState extends State<MultiSelect> {
   // this variable holds the selected items
-  final List<String> _selectedItems = ['Email', 'Drive', 'Calendar'];
+  //final List<String> _selectedItems;
 
 // This function is triggered when a checkbox is checked or unchecked
   void _itemChange(String itemValue, bool isSelected) {
     setState(() {
-      if (isSelected) {
-        _selectedItems.add(itemValue);
-      } else {
-        _selectedItems.remove(itemValue);
-      }
+      widget.items.firstWhere((element) => element.Name == itemValue).Checked =
+          isSelected;
     });
   }
 
@@ -30,7 +27,11 @@ class _MultiSelectState extends State<MultiSelect> {
 
 // this function is called when the Submit button is tapped
   void _submit() {
-    Navigator.pop(context, _selectedItems);
+    List<String> lstItemNames = [];
+    for (var item in widget.items) {
+      if (item.Checked) lstItemNames.add(item.Name);
+    }
+    Navigator.pop(context, lstItemNames);
   }
 
   @override
@@ -41,11 +42,12 @@ class _MultiSelectState extends State<MultiSelect> {
         child: ListBody(
           children: widget.items
               .map((item) => CheckboxListTile(
-                    value: _selectedItems.contains(item),
-                    title: Text(item),
-                    selected: _selectedItems.contains(item),
+                    value: item.Checked,
+                    title: Text(item.Name),
+                    selected: item.Checked,
                     controlAffinity: ListTileControlAffinity.leading,
-                    onChanged: (isChecked) => _itemChange(item, isChecked!),
+                    onChanged: (isChecked) =>
+                        _itemChange(item.Name, isChecked!),
                   ))
               .toList(),
         ),
